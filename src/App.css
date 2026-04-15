@@ -81,6 +81,35 @@
   box-shadow: 0 0 0 3px rgba(38, 64, 71, 0.12);
 }
 
+.field input[type='date'],
+.field input[type='time'] {
+  color-scheme: light;
+  cursor: pointer;
+}
+
+.time-select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(38, 64, 71, 0.25);
+  background: rgba(255, 255, 255, 0.96);
+  color: #264047;
+  font-size: 1rem;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.time-select:focus {
+  outline: none;
+  border-color: #264047;
+  box-shadow: 0 0 0 3px rgba(38, 64, 71, 0.12);
+}
+
+.time-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .full-width {
   grid-column: 1 / -1;
 }
