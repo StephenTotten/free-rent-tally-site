@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 24px;
   background-size: cover;
-  background-position: center;
+  background-position: center 20%;
 }
 
 .content-card {
@@ -248,26 +248,28 @@
 
 .skip-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 12px;
+  right: 0;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 10px;
-  background: rgba(38, 64, 71, 0.85);
-  color: #f8fafc;
-  font-size: 0.85rem;
-  font-weight: 700;
+  gap: 8px;
+  padding: 10px 16px 10px 14px;
+  background: rgba(20, 20, 20, 0.88);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  letter-spacing: 0.03em;
   backdrop-filter: blur(4px);
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.15s ease;
 }
 
 .skip-button:hover {
-  background: #264047;
-  transform: scale(1.05);
+  background: rgba(20, 20, 20, 1);
 }
 
 .video-wrapper iframe {

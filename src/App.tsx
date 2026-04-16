@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import './App.css'
-import backgroundImage from './assets/poolside grove.jpg'
+import backgroundImage from './assets/poolside grove small.jpg'
 import icon from './assets/grove-icon.webp'
 
 const EMAILJS_SERVICE_ID = 'service_zbayxy9'
@@ -167,8 +167,8 @@ function App() {
       ) : isContestPage ? (
         <section className="content-card form-card">
           <img src={icon} alt="The Grove Icon" className="brand-icon" />
-          <h1 className="form-title">Schedule a Tour to Enter</h1>
-          <p className="subtitle">Start with your contact details below, and someone from The Grove will reach out to you!</p>
+          <h1 className="form-title">Tour The Grove to Enter</h1>
+          <p className="subtitle">After the tour, complete your sweepstakes at the office!</p>
 
           <form
             className="contest-form"
@@ -320,14 +320,17 @@ function App() {
             <div className="video-wrapper">
               <iframe
                 title="Featured video"
-                src="https://www.youtube.com/embed/FQ3BwMzjX_M?autoplay=1&mute=1"
+                src="https://www.youtube.com/embed/KrggJfB_B9A?autoplay=1&mute=1"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             </div>
             {countdown === 0 && (
               <a href="#contest" className="skip-button">
-                Skip &rsaquo;
+                Skip
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                  <path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/>
+                </svg>
               </a>
             )}
           </div>
