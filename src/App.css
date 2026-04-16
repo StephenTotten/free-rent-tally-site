@@ -10,7 +10,7 @@
 
 .content-card {
   width: min(920px, 100%);
-  padding: 24px 28px;
+  padding: 14px 28px;
   border-radius: 24px;
   text-align: center;
   background: rgba(255, 255, 255, 0.84);
@@ -21,9 +21,9 @@
 
 .brand-icon {
   display: block;
-  width: min(120px, 28vw);
+  width: min(90px, 22vw);
   max-width: 100%;
-  margin: 0 auto 14px;
+  margin: 0 auto 8px;
   padding: 10px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.92);
@@ -32,9 +32,18 @@
 }
 
 .subtitle {
-  font-size: 2rem;
-  margin: 0 auto 18px;
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin: 0 auto 6px;
   color: #264047;
+  font-family: 'Forum', Georgia, serif;
+}
+
+.video-hint {
+  font-size: 0.8rem;
+  color: #4a6470;
+  margin: 0 auto 8px;
+  font-style: italic;
 }
 
 .form-card {
@@ -185,9 +194,9 @@
 
 .video-container {
   position: relative;
-  width: 75%;
+  width: 70%;
   max-width: 100%;
-  margin: 0 auto 20px;
+  margin: 0 auto 12px;
 }
 
 .video-wrapper {

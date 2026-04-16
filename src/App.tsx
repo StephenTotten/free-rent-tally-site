@@ -314,7 +314,8 @@ function App() {
       ) : (
         <section className="content-card">
           <img src={icon} alt="The Grove Icon" className="brand-icon" />
-          <p className="subtitle">Win 12 months free rent!</p>
+          <p className="subtitle">Win 1 year free rent!</p>
+          <p className="video-hint">Hover on video to unmute</p>
 
           <div className="video-container">
             <div className="video-wrapper">
