@@ -76,7 +76,7 @@
   color: #64748b;
 }
 
-.field input,
+.field input:not([type='checkbox']),
 .amenity-textarea {
   width: 100%;
   padding: 12px 14px;
@@ -87,7 +87,7 @@
   font-size: 1rem;
 }
 
-.field input:focus,
+.field input:not([type='checkbox']):focus,
 .amenity-textarea:focus {
   outline: none;
   border-color: #264047;
@@ -103,6 +103,37 @@
 .amenity-textarea {
   resize: none;
   font-family: inherit;
+}
+
+.location-opt-in {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.location-opt-in-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+}
+
+.location-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: #264047;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 
 .submit-feedback {

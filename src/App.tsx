@@ -69,6 +69,7 @@ function App() {
   const [tourTime, setTourTime] = useState('')
   const [countdown, setCountdown] = useState(30)
   const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [locationOptIn, setLocationOptIn] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -176,10 +177,34 @@ function App() {
               event.preventDefault()
               if (!formRef.current) return
               setSubmitState('sending')
-              emailjs
-                .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY)
-                .then(() => setSubmitState('success'))
-                .catch(() => setSubmitState('error'))
+
+              const doSend = (locationStr: string) => {
+                // inject location into a hidden field so EmailJS picks it up
+                const existing = formRef.current!.querySelector<HTMLInputElement>('input[name="location"]')
+                const locInput = existing ?? document.createElement('input')
+                locInput.type = 'hidden'
+                locInput.name = 'location'
+                locInput.value = locationStr
+                if (!existing) formRef.current!.appendChild(locInput)
+
+                emailjs
+                  .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current!, EMAILJS_PUBLIC_KEY)
+                  .then(() => setSubmitState('success'))
+                  .catch(() => setSubmitState('error'))
+              }
+
+              if (locationOptIn && navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  (pos) => {
+                    const { latitude, longitude, accuracy } = pos.coords
+                    doSend(`${latitude.toFixed(5)}, ${longitude.toFixed(5)} (±${Math.round(accuracy)}m)`)
+                  },
+                  () => doSend('Opted in — permission denied or unavailable'),
+                  { timeout: 8000 },
+                )
+              } else {
+                doSend(locationOptIn ? 'Opted in — geolocation not supported' : 'Not shared')
+              }
             }}
           >
             <div className="form-grid">
@@ -247,6 +272,21 @@ function App() {
                   rows={3}
                   className="amenity-textarea"
                 />
+              </label>
+
+              <label className="field full-width location-opt-in">
+                <span className="location-opt-in-inner">
+                  <input
+                    type="checkbox"
+                    name="locationOptIn"
+                    checked={locationOptIn}
+                    onChange={(e) => setLocationOptIn(e.target.checked)}
+                    className="location-checkbox"
+                  />
+                  <span>
+                    I agree to share my location to help The Grove at Bradford Hills understand where their advertising is reaching people. <span className="optional-label">(optional)</span>
+                  </span>
+                </span>
               </label>
             </div>
 
