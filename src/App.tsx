@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import backgroundImage from './assets/Luxurious poolside at twilight.png'
+import backgroundImage from './assets/poolside grove.jpg'
 import icon from './assets/grove-icon.webp'
 
 type TimeSlot = { value: string; label: string }
@@ -59,6 +59,21 @@ function App() {
   )
   const [tourDate, setTourDate] = useState('')
   const [tourTime, setTourTime] = useState('')
+  const [countdown, setCountdown] = useState(30)
+
+  useEffect(() => {
+    if (countdown <= 0) return
+    const id = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(id)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearInterval(id)
+  }, [])
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -86,32 +101,33 @@ function App() {
           <form className="contest-form" onSubmit={(event) => event.preventDefault()}>
             <div className="form-grid">
               <label className="field">
-                <span>First Name</span>
-                <input type="text" name="firstName" placeholder="First name" />
+                <span>First Name <span className="required-star">*</span></span>
+                <input type="text" name="firstName" placeholder="First name" required />
               </label>
 
               <label className="field">
-                <span>Last Name</span>
-                <input type="text" name="lastName" placeholder="Last name" />
+                <span>Last Name <span className="required-star">*</span></span>
+                <input type="text" name="lastName" placeholder="Last name" required />
               </label>
 
               <label className="field full-width">
-                <span>Email</span>
-                <input type="email" name="email" placeholder="you@example.com" />
+                <span>Email <span className="required-star">*</span></span>
+                <input type="email" name="email" placeholder="you@example.com" required />
               </label>
 
               <label className="field full-width">
-                <span>Phone Number</span>
-                <input type="tel" name="phone" placeholder="(555) 123-4567" />
+                <span>Phone Number <span className="required-star">*</span></span>
+                <input type="tel" name="phone" placeholder="(555) 123-4567" required />
               </label>
 
               <label className="field">
-                <span>Preferred Tour Date</span>
+                <span>Preferred Tour Date <span className="required-star">*</span></span>
                 <input
                   type="date"
                   name="tourDate"
                   min={getTodayStr()}
                   value={tourDate}
+                  required
                   onChange={(e) => {
                     setTourDate(e.target.value)
                     setTourTime('')
@@ -120,12 +136,13 @@ function App() {
               </label>
 
               <label className="field">
-                <span>Preferred Tour Time</span>
+                <span>Preferred Tour Time <span className="required-star">*</span></span>
                 <select
                   name="tourTime"
                   value={tourTime}
                   onChange={(e) => setTourTime(e.target.value)}
                   disabled={!tourDate}
+                  required
                   className="time-select"
                 >
                   <option value="">
@@ -137,6 +154,16 @@ function App() {
                     </option>
                   ))}
                 </select>
+              </label>
+
+              <label className="field full-width">
+                <span>What amenity is most important to you? <span className="optional-label">(optional)</span></span>
+                <textarea
+                  name="amenity"
+                  placeholder="e.g. pool, gym, parking..."
+                  rows={3}
+                  className="amenity-textarea"
+                />
               </label>
             </div>
 
@@ -155,26 +182,32 @@ function App() {
           <img src={icon} alt="The Grove Icon" className="brand-icon" />
           <p className="subtitle">Win 12 months free rent!</p>
 
-          <div className="video-wrapper">
-            <iframe
-              title="Featured video"
-              srcDoc="<style>body{margin:0;display:grid;place-items:center;background:#0f172a;color:#f8fafc;font-family:Arial,sans-serif;}div{border:1px dashed rgba(255,255,255,.45);border-radius:14px;padding:1rem 1.5rem;background:rgba(255,255,255,.06);}</style><div>Embedded video goes here</div>"
-              allowFullScreen
-            />
+          <div className="video-container">
+            <div className="video-wrapper">
+              <iframe
+                title="Featured video"
+                src="https://www.youtube.com/embed/FQ3BwMzjX_M?autoplay=1&mute=1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            {countdown === 0 && (
+              <a href="#contest" className="skip-button">
+                Skip &rsaquo;
+              </a>
+            )}
           </div>
 
           <div className="action-row">
-            <a
-              href="https://bradford-hills.com"
-              target="_blank"
-              rel="noreferrer"
-              className="action-button primary"
-            >
-              View Website
-            </a>
-            <a href="#contest" className="action-button secondary">
-              Enter Contest
-            </a>
+            {countdown > 0 ? (
+              <button type="button" className="action-button secondary" disabled>
+                Enter Contest ({countdown})
+              </button>
+            ) : (
+              <a href="#contest" className="action-button secondary">
+                Enter Contest
+              </a>
+            )}
           </div>
         </section>
       )}

@@ -65,7 +65,19 @@
   font-weight: 600;
 }
 
-.field input {
+.required-star {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.optional-label {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.field input,
+.amenity-textarea {
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
@@ -75,7 +87,8 @@
   font-size: 1rem;
 }
 
-.field input:focus {
+.field input:focus,
+.amenity-textarea:focus {
   outline: none;
   border-color: #264047;
   box-shadow: 0 0 0 3px rgba(38, 64, 71, 0.12);
@@ -85,6 +98,11 @@
 .field input[type='time'] {
   color-scheme: light;
   cursor: pointer;
+}
+
+.amenity-textarea {
+  resize: none;
+  font-family: inherit;
 }
 
 .time-select {
@@ -114,15 +132,44 @@
   grid-column: 1 / -1;
 }
 
-.video-wrapper {
-  aspect-ratio: 16 / 9;
+.video-container {
+  position: relative;
   width: 75%;
   max-width: 100%;
   margin: 0 auto 20px;
+}
+
+.video-wrapper {
+  aspect-ratio: 16 / 9;
+  width: 100%;
   overflow: hidden;
   border-radius: 18px;
   border: 1px solid rgba(15, 23, 42, 0.12);
   background: rgba(2, 6, 23, 0.85);
+}
+
+.skip-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: rgba(38, 64, 71, 0.85);
+  color: #f8fafc;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.skip-button:hover {
+  background: #264047;
+  transform: scale(1.05);
 }
 
 .video-wrapper iframe {
@@ -152,6 +199,12 @@
   text-decoration: none;
 }
 
+.action-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .action-button:hover {
   transform: translateY(-1px);
   opacity: 0.95;
@@ -179,6 +232,10 @@
 
   .full-width {
     grid-column: auto;
+  }
+
+  .video-container {
+    width: 100%;
   }
 
   .video-wrapper {
