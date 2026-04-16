@@ -105,6 +105,26 @@
   font-family: inherit;
 }
 
+.submit-feedback {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 999px;
+}
+
+.submit-feedback.success {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.submit-feedback.error {
+  color: #991b1b;
+  background: #fee2e2;
+  margin-top: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
 .time-select {
   width: 100%;
   padding: 12px 14px;
@@ -146,6 +166,53 @@
   border-radius: 18px;
   border: 1px solid rgba(15, 23, 42, 0.12);
   background: rgba(2, 6, 23, 0.85);
+}
+
+.rules-link {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: #264047;
+  opacity: 0.6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+
+.rules-link:hover {
+  opacity: 1;
+}
+
+.rules-card {
+  max-width: 760px;
+  text-align: left;
+}
+
+.rules-body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #334155;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.rules-body h2 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #264047;
+  margin: 20px 0 6px;
+}
+
+.rules-body p {
+  margin: 0 0 10px;
+}
+
+.rules-disclaimer {
+  font-weight: 600;
+  color: #264047;
 }
 
 .skip-button {
