@@ -70,6 +70,7 @@ function App() {
   const [countdown, setCountdown] = useState(30)
   const [countdownStarted, setCountdownStarted] = useState(false)
   const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [showModal, setShowModal] = useState(false)
   const [locationOptIn, setLocationOptIn] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -129,7 +130,34 @@ function App() {
   }, [])
 
   return (
-    <main
+    <>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-card">
+            <img src={icon} alt="The Grove Icon" className="modal-icon" />
+            <h2 className="modal-title">You're entered!</h2>
+            <p className="modal-body">Would you like to visit The Grove at Bradford Hills website?</p>
+            <div className="modal-actions">
+              <button
+                className="action-button secondary"
+                onClick={() => {
+                  window.open('https://www.bradford-hills.com/', '_blank', 'noopener,noreferrer')
+                  setShowModal(false)
+                }}
+              >
+                Yes, take me there
+              </button>
+              <button
+                className="action-button outline"
+                onClick={() => setShowModal(false)}
+              >
+                No thanks
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <main
       className="landing-page"
       style={{
         backgroundImage: `linear-gradient(rgba(8, 12, 20, 0.45), rgba(8, 12, 20, 0.7)), url(${backgroundImage})`,
@@ -220,7 +248,7 @@ function App() {
 
                 emailjs
                   .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current!, EMAILJS_PUBLIC_KEY)
-                  .then(() => setSubmitState('success'))
+                  .then(() => { setSubmitState('success'); setShowModal(true) })
                   .catch(() => setSubmitState('error'))
               }
 
@@ -380,6 +408,7 @@ function App() {
         </section>
       )}
     </main>
+    </>
   )
 }
 
