@@ -68,12 +68,13 @@ function App() {
   const [tourDate, setTourDate] = useState('')
   const [tourTime, setTourTime] = useState('')
   const [countdown, setCountdown] = useState(30)
+  const [countdownStarted, setCountdownStarted] = useState(false)
   const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [locationOptIn, setLocationOptIn] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    if (countdown <= 0) return
+    if (!countdownStarted || countdown <= 0) return
     const id = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -84,7 +85,37 @@ function App() {
       })
     }, 1000)
     return () => clearInterval(id)
-  }, [])
+  }, [countdownStarted])
+
+  useEffect(() => {
+    if (isContestPage || isRulesPage) return
+
+    const initPlayer = () => {
+      new (window as any).YT.Player('yt-player', {
+        videoId: 'KrggJfB_B9A',
+        playerVars: { rel: 0 },
+        events: {
+          onStateChange: (event: any) => {
+            if (event.data === 1) {
+              setCountdownStarted(true)
+            }
+          },
+        },
+      })
+    }
+
+    if ((window as any).YT && (window as any).YT.Player) {
+      initPlayer()
+    } else {
+      ;(window as any).onYouTubeIframeAPIReady = initPlayer
+      if (!document.getElementById('yt-api-script')) {
+        const tag = document.createElement('script')
+        tag.id = 'yt-api-script'
+        tag.src = 'https://www.youtube.com/iframe_api'
+        document.head.appendChild(tag)
+      }
+    }
+  }, [isContestPage, isRulesPage])
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -315,16 +346,10 @@ function App() {
         <section className="content-card">
           <img src={icon} alt="The Grove Icon" className="brand-icon" />
           <p className="subtitle">Win 1 year free rent!</p>
-          <p className="video-hint">Hover on video to unmute</p>
 
           <div className="video-container">
             <div className="video-wrapper">
-              <iframe
-                title="Featured video"
-                src="https://www.youtube.com/embed/KrggJfB_B9A?autoplay=1&mute=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              <div id="yt-player" style={{ width: '100%', height: '100%' }} />
             </div>
             {countdown === 0 && (
               <a href="#contest" className="skip-button">
@@ -337,7 +362,11 @@ function App() {
           </div>
 
           <div className="action-row">
-            {countdown > 0 ? (
+            {!countdownStarted ? (
+              <button type="button" className="action-button secondary" disabled>
+                Watch to Enter
+              </button>
+            ) : countdown > 0 ? (
               <button type="button" className="action-button secondary" disabled>
                 Enter Contest ({countdown})
               </button>
