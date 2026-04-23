@@ -135,7 +135,7 @@ function App() {
         <div className="modal-overlay">
           <div className="modal-card">
             <img src={icon} alt="The Grove Icon" className="modal-icon" />
-            <h2 className="modal-title">You're entered!</h2>
+            <h2 className="modal-title">Tour accepted! You can complete your sweepstakes entry in our leasing office after your tour!</h2>
             <p className="modal-body">Would you like to visit The Grove at Bradford Hills website?</p>
             <div className="modal-actions">
               <button

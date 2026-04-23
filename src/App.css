@@ -150,11 +150,14 @@
   font-weight: 600;
   padding: 10px 16px;
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .submit-feedback.success {
   color: #166534;
   background: #dcfce7;
+  text-align: center;
 }
 
 .submit-feedback.error {
