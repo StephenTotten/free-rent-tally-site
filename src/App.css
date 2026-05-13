@@ -103,10 +103,35 @@
   box-shadow: 0 0 0 3px rgba(38, 64, 71, 0.12);
 }
 
-.field input[type='date'],
 .field input[type='time'] {
   color-scheme: light;
   cursor: pointer;
+}
+
+.date-picker-anchor {
+  position: relative;
+}
+
+.date-display-input {
+  cursor: pointer;
+}
+
+.day-picker-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(38, 64, 71, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+  padding: 8px;
+}
+
+.day-picker-dropdown .rdp-root {
+  --rdp-accent-color: #264047;
+  --rdp-accent-background-color: rgba(38, 64, 71, 0.1);
+  margin: 0;
 }
 
 .amenity-textarea {

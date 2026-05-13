@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { DayPicker } from 'react-day-picker'
+import 'react-day-picker/style.css'
 import './App.css'
 import backgroundImage from './assets/poolside grove small.jpg'
 import icon from './assets/grove-icon.webp'
@@ -28,10 +30,7 @@ function getTimeSlots(dateStr: string): TimeSlot[] {
   let startHour: number
   let endHour: number // last slot starts at (endHour - 1):45
 
-  if (dow === 0) {
-    startHour = 12
-    endHour = 15
-  } else if (dow === 6) {
+  if (dow === 6) {
     startHour = 10
     endHour = 15
   } else {
@@ -72,7 +71,20 @@ function App() {
   const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [showModal, setShowModal] = useState(false)
   const [locationOptIn, setLocationOptIn] = useState(false)
+  const [showDatePicker, setShowDatePicker] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const datePickerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!showDatePicker) return
+    const handleClickOutside = (e: MouseEvent) => {
+      if (datePickerRef.current && !datePickerRef.current.contains(e.target as Node)) {
+        setShowDatePicker(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [showDatePicker])
 
   useEffect(() => {
     if (!countdownStarted || countdown <= 0) return
@@ -289,17 +301,39 @@ function App() {
 
               <label className="field">
                 <span>Preferred Tour Date <span className="required-star">*</span></span>
-                <input
-                  type="date"
-                  name="tourDate"
-                  min={getTodayStr()}
-                  value={tourDate}
-                  required
-                  onChange={(e) => {
-                    setTourDate(e.target.value)
-                    setTourTime('')
-                  }}
-                />
+                <input type="hidden" name="tourDate" value={tourDate} />
+                <div className="date-picker-anchor" ref={datePickerRef}>
+                  <input
+                    type="text"
+                    readOnly
+                    required
+                    value={tourDate ? new Date(tourDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) : ''}
+                    placeholder="Select a date"
+                    className="date-display-input"
+                    onClick={() => setShowDatePicker((v) => !v)}
+                  />
+                  {showDatePicker && (
+                    <div className="day-picker-dropdown">
+                      <DayPicker
+                        mode="single"
+                        selected={tourDate ? new Date(tourDate + 'T00:00:00') : undefined}
+                        onSelect={(date) => {
+                          if (!date) return
+                          const yyyy = date.getFullYear()
+                          const mm = String(date.getMonth() + 1).padStart(2, '0')
+                          const dd = String(date.getDate()).padStart(2, '0')
+                          setTourDate(`${yyyy}-${mm}-${dd}`)
+                          setTourTime('')
+                          setShowDatePicker(false)
+                        }}
+                        disabled={[
+                          { dayOfWeek: [0] },
+                          { before: new Date(getTodayStr() + 'T00:00:00') },
+                        ]}
+                      />
+                    </div>
+                  )}
+                </div>
               </label>
 
               <label className="field">
