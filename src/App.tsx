@@ -407,7 +407,7 @@ function App() {
       ) : (
         <section className="content-card">
           <img src={icon} alt="The Grove Icon" className="brand-icon" />
-          <p className="subtitle">Win 1 year free rent!</p>
+          <p className="subtitle">The drawing has concluded! Thank you for your interest!</p>
 
           <div className="video-container">
             <div className="video-wrapper">
@@ -423,7 +423,7 @@ function App() {
             )}
           </div>
 
-          <div className="action-row">
+          {/* <div className="action-row">
             {!countdownStarted ? (
               <button type="button" className="action-button secondary" disabled>
                 Watch to Enter
@@ -438,7 +438,7 @@ function App() {
               </a>
             )}
           </div>
-          <a href="#rules" className="rules-link">Official Rules</a>
+          <a href="#rules" className="rules-link">Official Rules</a> */}
         </section>
       )}
     </main>
