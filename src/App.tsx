@@ -184,7 +184,7 @@ function App() {
             <p className="rules-disclaimer">NO PURCHASE NECESSARY TO ENTER OR TO WIN. A PURCHASE OF ANY KIND WILL NOT INCREASE YOUR ODDS OF WINNING. ALL FEDERAL, STATE, LOCAL AND MUNICIPAL LAWS AND REGULATIONS APPLY.</p>
 
             <h2>HOW TO ENTER</h2>
-            <p>FREE RENT TALLY ("Sweepstakes") shall begin on April 21, 2026, at 12:00 a.m. eastern time and end on August 31, 2026, at 12:00 p.m. eastern time ("Entry Period"). The Sweepstakes will be conducted at 3335 Rhea Rd, Tallahassee, Florida 32312, (the "Sweepstakes Location"). The Sweepstakes winner shall be chosen in a random drawing from all eligible entries on August 31, 2026, at approximately 2:00 p.m. eastern time. Winner does not need to be present to win.</p>
+            <p>FREE RENT TALLY ("Sweepstakes") shall begin on September 24, 2026, at 12:00 a.m. eastern time and end on December 31, 2026, at 12:00 p.m. eastern time ("Entry Period"). The Sweepstakes will be conducted at 3335 Rhea Rd, Tallahassee, Florida 32312, (the "Sweepstakes Location"). The Sweepstakes winner shall be chosen in a random drawing from all eligible entries on December 31, 2026, at approximately 2:00 p.m. eastern time. Winner does not need to be present to win.</p>
             <p>THERE IS NO PURCHASE OR LEASE NECESSARY TO ENTER OR WIN AND A PURCHASE WILL NOT INCREASE YOUR ODDS OF WINNING.</p>
             <p>To enter the Sweepstakes, you must first visit The Grove at Bradford Hills at 3335 Rhea Rd, Tallahassee, Florida 32312, and take an in-person tour of The Grove at Bradford Hills guided by a The Grove at Bradford Hills employee and complete a digital Entry Form on The Grove at Bradford Hills' clubhouse computer (thereafter, the "Entrant"). In-person tours are only available during normal business hours for The Grove at Bradford Hills. You must schedule an In-Person tour by doing so in person at the Sweepstakes Location, by phone at 850-610-5560, or using FreeRentTally.com. The Entry Form requires your full name; age; complete address [no P.O. Boxes]; mobile phone number, including area code; and e-mail address. Entrant must complete the Entry Form with all required information on the entry submission page for the entry to be eligible. You may opt-in to advertising by checking the appropriate box on the Entry Form. For purposes of this Sweepstakes, an on-line entry is "received" when the Sweepstakes Website's servers record the entry information or at the time an Entrant completes the Entry Form following an in-person tour. The database clock of the Sweepstakes Website will be the official time keeper for the Sweepstakes. By submitting an Entry Form to the Sweepstakes, all Entrants are affirming their agreement to these Official Rules. Those who do not follow all of the instructions, provide the required information in their Entry Form, or abide by these Official Rules or other instructions of Sponsor will be disqualified.</p>
             <p>Limit one entry per person. Duplicate and mechanically reproduced multiple entries will be disregarded. All entries must be completed in their entirety. All entries become the property of the Sponsor and will not be returned. Sponsor is not responsible for illegible, incomplete, altered, mutilated, or lost entries, for any incorrect or inaccurate entry information, whether caused by any of the equipment or programming associated with or utilized in the Sweepstakes, or by any technical or human error which may occur in the processing of the entries in the Sweepstakes, or for failure to receive entries due to technical failures of any kind, and such entries will be void. Sponsor reserves the right to disqualify any entries by persons determined to be tampering with or abusing any aspect of the Sweepstakes.</p>
@@ -203,7 +203,7 @@ function App() {
             <p>Odds of winning will depend on the number of eligible participants who enter the Sweepstakes.</p>
 
             <h2>WINNER NOTIFICATION AND ACCEPTANCE</h2>
-            <p>Winner will be notified by email or phone using the email address or phone number provided on the Entry Form on or about August 31, 2026. If a Winner fails to respond to Sponsor within fourteen (14) days of notification, such Winner shall forfeit Prize and Sponsor may select an alternate Winner in a random drawing from the remaining eligible entries or may cancel and terminate the Sweepstakes without a Winner. Potential winner may waive their right to receive a prize. Prize is non-assignable and non-transferable. No substitutions allowed. Winner is solely responsible for reporting and payment of any taxes on prizes. Where legal, winner may be required to sign, execute, and return a Prize Winner Statement of Eligibility and Release of Liability and Publicity Release and any other documentation that Sponsor requires (collectively "Statement/Release") before a prize will be awarded or such potential winner may be disqualified and an alternate potential winner may be selected. Except where prohibited by law, participation in the Sweepstakes constitutes Entrant's consent to the publication of his or her name and image in any media for any commercial or promotional purpose, without limitation or further compensation.</p>
+            <p>Winner will be notified by email or phone using the email address or phone number provided on the Entry Form on or about December 31, 2026. If a Winner fails to respond to Sponsor within fourteen (14) days of notification, such Winner shall forfeit Prize and Sponsor may select an alternate Winner in a random drawing from the remaining eligible entries or may cancel and terminate the Sweepstakes without a Winner. Potential winner may waive their right to receive a prize. Prize is non-assignable and non-transferable. No substitutions allowed. Winner is solely responsible for reporting and payment of any taxes on prizes. Where legal, winner may be required to sign, execute, and return a Prize Winner Statement of Eligibility and Release of Liability and Publicity Release and any other documentation that Sponsor requires (collectively "Statement/Release") before a prize will be awarded or such potential winner may be disqualified and an alternate potential winner may be selected. Except where prohibited by law, participation in the Sweepstakes constitutes Entrant's consent to the publication of his or her name and image in any media for any commercial or promotional purpose, without limitation or further compensation.</p>
             <p>The Sponsor reserves the right at any time to cancel this Sweepstakes and/or substitute another prize of equal or greater value for any reason including if the Prize becomes unavailable.</p>
             <p>The Prize must be claimed in person by the winner unless otherwise specified. Proper identification is required to claim the prize (valid drivers license, passport, state ID or military ID) and winner will be required to complete a rental application (which includes, among other things, submitting to a background check and credit check as well as providing a guarantor for the lease) and, if approved, sign a one-year lease for the property at The Grove at Bradford Hills in order to take receipt of the prize. Winner must meet all other background and credit criteria of The Grove at Bradford Hills to be eligible to win. The terms of the Lease are not subject to change or negotiation. Failure to enter the Lease by September 30, 2026, will constitute forfeiture of the Prize.</p>
 
@@ -407,7 +407,7 @@ function App() {
       ) : (
         <section className="content-card">
           <img src={icon} alt="The Grove Icon" className="brand-icon" />
-          <p className="subtitle">The drawing has concluded! Thank you for your interest!</p>
+          <p className="subtitle">Win 1 year free rent!</p>
 
           <div className="video-container">
             <div className="video-wrapper">
@@ -423,7 +423,7 @@ function App() {
             )}
           </div>
 
-          {/* <div className="action-row">
+          <div className="action-row">
             {!countdownStarted ? (
               <button type="button" className="action-button secondary" disabled>
                 Watch to Enter
@@ -438,7 +438,7 @@ function App() {
               </a>
             )}
           </div>
-          <a href="#rules" className="rules-link">Official Rules</a> */}
+          <a href="#rules" className="rules-link">Official Rules</a>
         </section>
       )}
     </main>
